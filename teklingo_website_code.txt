@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TekLingo | Vishwakarma University</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #1d3a60, #2e5b80, #3f7fa6);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        color: #fff;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* Floating particles */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .particle {
+        position: absolute;
+        background: rgba(0, 255, 255, 0.6);
+        border-radius: 50%;
+        animation: floatParticle linear infinite;
+      }
+      @keyframes floatParticle {
+        from {
+          transform: translateY(0) scale(1);
+        }
+        to {
+          transform: translateY(-100vh) scale(0.5);
+        }
+      }
+
+      /* Light ray sweep effect */
+      .light-ray {
+        position: fixed;
+        top: 0;
+        left: -50%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: skewX(-20deg);
+        animation: sweep 8s linear infinite;
+        z-index: 1;
+      }
+      @keyframes sweep {
+        0% {
+          left: -50%;
+        }
+        100% {
+          left: 150%;
+        }
+      }
+
+      header {
+        text-align: center;
+        padding: 3rem 1rem;
+        animation: fadeDown 1.2s ease-in-out;
+        position: relative;
+        z-index: 2;
+      }
+      header h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #00ffff;
+        /* dark blue thin stroke using multiple text shadows */
+        text-shadow:
+          -1px -1px 0 #082a47,
+          1px -1px 0 #082a47,
+          -1px 1px 0 #082a47,
+          1px 1px 0 #082a47,
+          0 0 8px #00ffff,
+          0 0 20px #00ffff,
+          0 0 35px #00cccc;
+        letter-spacing: 2px;
+        animation: glowPulse 2s infinite;
+      }
+      header p {
+        font-size: 1.2rem;
+        color: #e0e0e0;
+      }
+      header .tagline {
+        font-size: 1rem;
+        color: #ffdd57;
+        margin-top: 0.5rem;
+      }
+      @keyframes glowPulse {
+        0%,
+        100% {
+          text-shadow:
+            -1px -1px 0 #082a47,
+            1px -1px 0 #082a47,
+            -1px 1px 0 #082a47,
+            1px 1px 0 #082a47,
+            0 0 8px #00ffff,
+            0 0 20px #00ffff,
+            0 0 35px #00cccc;
+        }
+        50% {
+          text-shadow:
+            -1px -1px 0 #082a47,
+            1px -1px 0 #082a47,
+            -1px 1px 0 #082a47,
+            1px 1px 0 #082a47,
+            0 0 15px #00ffff,
+            0 0 30px #00ffff,
+            0 0 50px #00cccc;
+        }
+      }
+      nav {
+        display: flex;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      nav a {
+        color: #fff;
+        margin: 0 1.5rem;
+        text-decoration: none;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 2px;
+        background: #00ffff;
+        transition: width 0.3s ease;
+      }
+      nav a:hover {
+        color: #00ffff;
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+      .hero {
+        background: url(
+            "https://image.slidesdocs.com/responsive-images/slides/0-blue-work-report-plan-project-department-program-business-technology-creative-powerpoint-background_9dd29702f4__960_540.jpg"
+          )
+          center/cover no-repeat;
+        padding: 6rem 2rem;
+        position: relative;
+        z-index: 2;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      .hero h2,
+      .hero p {
+        position: relative;
+        z-index: 1;
+      }
+      .hero h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        animation: fadeUp 1s ease;
+        color: #ffdd57;
+      }
+      .hero p {
+        max-width: 700px;
+        margin: auto;
+        font-size: 1.1rem;
+        animation: fadeUp 1.5s ease;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 1rem;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+      }
+      section {
+        max-width: 1100px;
+        margin: 3rem auto;
+        padding: 2rem;
+        z-index: 2;
+        position: relative;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 1.2s ease;
+      }
+      .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      }
+      h3 {
+        color: #00ffff;
+        margin-bottom: 1rem;
+      }
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        font-size: 1rem;
+      }
+      .social-links a {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s ease;
+      }
+      .social-links a i {
+        color: #00ffff;
+        font-size: 1.3rem;
+      }
+      .social-links a:hover {
+        color: #ffdd57;
+      }
+      button {
+        background: linear-gradient(90deg, #00ffff, #00cccc);
+        color: #000;
+        padding: 0.8rem 1.8rem;
+        border: none;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 5px 15px rgba(0, 255, 255, 0.5);
+      }
+      .footer {
+        background: rgba(0, 0, 0, 0.4);
+        text-align: center;
+        padding: 1.5rem;
+        font-size: 0.9rem;
+        margin-top: 3rem;
+        color: #bbb;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="light-ray"></div>
+    <div class="particles" id="particles"></div>
+
+    <header>
+      <h1>TekLingo Club</h1>
+      <p>Vishwakarma University</p>
+      <p class="tagline"> <Learn >< Code >< Create > </p>
+    </header>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#join">Join Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hero">
+      <h2>Turning Ideas into Reality</h2>
+      <p>
+        TekLingo is a student-driven programming club where we learn, code, and
+        create together. Join us to master industry-relevant programming
+        languages through hands-on projects and community collaboration.
+      </p>
+    </div>
+    <section id="about" class="card">
+      <h3>About TekLingo</h3>
+      <p>
+        We believe in learning by doing. Our members work on exciting projects,
+        participate in hackathons, and explore the latest technologies in a
+        collaborative environment. Whether you're a beginner or an experienced
+        programmer, you'll find a place to grow your skills here.
+      </p>
+    </section>
+    <section id="join" class="card">
+      <h3>Join TekLingo</h3>
+      <p>
+        Be part of a community that's passionate about technology and
+        innovation. We host regular coding sessions, workshops, and project
+        collaborations.
+      </p>
+      <button onclick="joinClub()">Join
+        Now</button>
+    </section>
+    <section id="contact" class="card">
+      <h3>Contact Us</h3>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/company/teklingo/" target="_blank"
+          ><i class="fab fa-linkedin"></i>LinkedIn Profile</a
+        >
+        <a
+          href="https://www.instagram.com/teklingo.vu?igsh=MXF1NGY3ZGw3NnJvdQ=="
+          target="_blank"
+          ><i class="fab fa-instagram"></i>Instagram Profile</a
+        >
+        <a href="mailto:teklingo@vupune.ac.in"
+          ><i class="fas fa-envelope"></i>teklingo@vupune.ac.in</a
+        >
+        <a
+          href="https://maps.google.com/?q=Vishwakarma+University+Pune"
+          target="_blank"
+          ><i class="fas fa-map-marker-alt"></i>Vishwakarma University, Pune</a
+        >
+      </div>
+    </section>
+    <div class="footer">
+      <p> TekLingo Club | Vishwakarma University</p>
+    </div>
+
+    <script>
+      function joinClub() {
+        alert("Thanks for showing interest! Recruitment details coming soon.");
+      }
+
+      // Create floating particles
+      const particlesContainer = document.getElementById("particles");
+      for (let i = 0; i < 25; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+        const size = Math.random() * 6 + 4;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+        particlesContainer.appendChild(particle);
+      }
+    </script>
+  </body>
+</html>
