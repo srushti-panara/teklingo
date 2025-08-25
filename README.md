@@ -10,7 +10,7 @@ This project is part of my journey to learn and practice **web development basic
 - ✅ Easy-to-read code structure  <br>
 - ✅ Beginner-friendly  <br>
 
-# # 🎯 Future Improvements
+## 🎯 Future Improvements
 Add more interactive features with JavaScript <br>
 Improve UI with CSS animations <br>
 
